@@ -9,6 +9,7 @@ import jade.core.AID;
 import jade.core.behaviours.Behaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import javax.swing.JOptionPane;
 
 public class RequestPerformer extends Behaviour{
   private AID bestSeller;
@@ -80,8 +81,7 @@ public class RequestPerformer extends Behaviour{
       reply = myAgent.receive(mt);
       if (reply != null) {
          if (reply.getPerformative() == ACLMessage.INFORM) {
-            System.out.println(bookTitle+" successfully purchased from agent "+reply.getSender().getName());
-            System.out.println("Price = "+bestPrice);
+            JOptionPane.showMessageDialog(null, bookTitle + " successfully purchased from agent " + reply.getSender().getName() + " by $" + bestPrice);
             myAgent.doDelete();
          }
          else {
@@ -99,7 +99,7 @@ public class RequestPerformer extends Behaviour{
   
   public boolean done() {
     if (step == 2 && bestSeller == null) {
-       System.out.println("Attempt failed: "+bookTitle+" not available for sale");
+       JOptionPane.showMessageDialog(null, "Attempt failed: " + bookTitle + " no available for sale.");
     }
     return ((step == 2 && bestSeller == null) || step == 4);
  }
