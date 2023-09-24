@@ -16,6 +16,7 @@ import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
+import javax.swing.JOptionPane;
 
 public class BookSellerAgent extends Agent{
 
@@ -63,7 +64,7 @@ public class BookSellerAgent extends Agent{
 	  addBehaviour(new OneShotBehaviour() {
 	    public void action() {
 	      catalogue.put(title, price);
-	      System.out.println(title + " inserted with a price of " + price);
+              JOptionPane.showMessageDialog(null, title + " inserted with a price of " + price);
 	    }
 	  });
 	}
